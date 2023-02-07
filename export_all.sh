@@ -91,7 +91,7 @@ for (( batch_start_block=$start_block; batch_start_block <= $end_block; batch_st
     transactions_file=${transactions_output_dir}/transactions_${file_name_suffix}.csv
     log "Exporting blocks ${block_range} to ${blocks_file}"
     log "Exporting transactions from blocks ${block_range} to ${transactions_file}"
-    python3 ./ethereumetl export_blocks_and_transactions --start-block=${batch_start_block} --end-block=${batch_end_block} --provider-uri="${provider_uri}" --blocks-output=${blocks_file} --transactions-output=${transactions_file}
+    python3 ./ethereumetl.py export_blocks_and_transactions --start-block=${batch_start_block} --end-block=${batch_end_block} --provider-uri="${provider_uri}" --blocks-output=${blocks_file} --transactions-output=${transactions_file}
     quit_if_returned_error
 
     ### token_transfers
@@ -101,7 +101,7 @@ for (( batch_start_block=$start_block; batch_start_block <= $end_block; batch_st
 
     token_transfers_file=${token_transfers_output_dir}/token_transfers_${file_name_suffix}.csv
     log "Exporting ERC20 transfers from blocks ${block_range} to ${token_transfers_file}"
-    python3 ./ethereumetl export_token_transfers --start-block=${batch_start_block} --end-block=${batch_end_block} --provider-uri="${provider_uri}" --output=${token_transfers_file}
+    python3 ./ethereumetl.py export_token_transfers --start-block=${batch_start_block} --end-block=${batch_end_block} --provider-uri="${provider_uri}" --output=${token_transfers_file}
     quit_if_returned_error
 
     end_time=$(date +%s)
