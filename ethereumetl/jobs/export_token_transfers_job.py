@@ -79,7 +79,7 @@ class ExportTokenTransfersJob(BaseJob):
             event_filter = self.web3.eth.filter(filter_params)
             events = event_filter.get_all_entries()
         except ValueError as e:
-            if str(e).find('implemented: eth_newFilter'):
+            if 'implemented: eth_newFilter' in str(e):
                 self._supports_eth_newFilter = False
                 events = self.web3.eth.getLogs(filter_params)
             else:
